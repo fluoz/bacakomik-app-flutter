@@ -19,6 +19,8 @@ if ! command -v rpmbuild >/dev/null; then
   exit 1
 fi
 
+dart "$ROOT/linux/packaging/check_bundle.dart" "$BUNDLE"
+
 mkdir -p "$RPM_DIR"/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS} "$ROOT/dist"
 STAGING=$(mktemp -d "$RPM_DIR/source.XXXXXX")
 trap 'rm -rf "$STAGING"' EXIT

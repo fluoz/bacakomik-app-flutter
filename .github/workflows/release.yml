@@ -209,6 +209,9 @@ jobs:
             --dart-define=GOOGLE_DESKTOP_CLIENT_ID="$GOOGLE_DESKTOP_CLIENT_ID" \
             --dart-define=GOOGLE_DESKTOP_CLIENT_SECRET="$GOOGLE_DESKTOP_CLIENT_SECRET"
 
+      - name: Check Linux bundle
+        run: dart linux/packaging/check_bundle.dart
+
       - name: Build AppImage
         run: |
           APPDIR=build/AppDir
