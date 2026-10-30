@@ -9,9 +9,11 @@ Get it from the [Releases](https://github.com/sofyan-rs/bacakomik-app-flutter/re
 - **Android:** the APK; `arm64-v8a` fits almost every phone. Android 7.0 or newer.
 - **Windows:** `windows-setup.exe` (Windows 10 and 11, 64-bit).
 - **macOS:** the `.dmg` (macOS 12 or newer). Not signed yet: open it the first time with right click → Open.
-- **Linux:** the `.AppImage` (64-bit). No in-app WebView yet: "Open in WebView" opens the browser, and sources that need a WebView do not load.
+- **Linux:** the `.AppImage` (64-bit), or `.rpm` for Fedora (`sudo dnf install ./BacaKomik-<version>-linux-x86_64.rpm`). No in-app WebView yet: "Open in WebView" opens the browser, and sources that need a WebView do not load.
 
 The app checks for new releases and updates itself (on Linux when run from the AppImage). More on the [website](https://bacakomik.kurodev.org).
+
+For Fedora RPM installs, download and install the new RPM with the same `sudo dnf install` command to update.
 
 ## Screenshots
 

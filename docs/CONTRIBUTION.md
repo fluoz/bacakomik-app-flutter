@@ -73,6 +73,17 @@ bun scripts/bundle.ts ../bacakomik-app-flutter/assets/extensions bacakomik vorat
 
 `.github/workflows/release.yml` checks the tag against the pubspec, runs analyze and tests, and publishes signed `arm64-v8a`, `armeabi-v7a`, `x86_64` and universal APKs as `BacaKomik-<version>-<abi>.apk` with a "Which APK?" table. **Don't rename the assets or that heading**: installed apps find updates through them.
 
+Desktop builds are published in the same release, including Linux AppImage and Fedora RPM (`BacaKomik-<version>-linux-x86_64.rpm`). A manual workflow run builds them as workflow artifacts without publishing a release.
+
+To build the RPM locally on x86_64 Linux, install the Flutter Linux build dependencies and `rpm-build` (Fedora) or `rpm` (Ubuntu), then run:
+
+```bash
+flutter build linux --release
+bash linux/packaging/build-rpm.sh   # version defaults to pubspec.yaml
+```
+
+The RPM is written to `dist/`. It installs the Flutter bundle under `/opt/bacakomik`, a `/usr/bin/bacakomik` launcher, and the desktop entry and icon. Install or update it with `sudo dnf install ./dist/BacaKomik-<version>-linux-x86_64.rpm`. RPM installs use downloaded RPMs for updates; the in-app Linux installer supports AppImage only.
+
 Secrets (Settings → Secrets → Actions): `KEYSTORE_BASE64` (`base64 -w0 upload-keystore.jks`), `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`. Local signing reads `android/key.properties` (git-ignored: `storeFile`, `storePassword`, `keyAlias`, `keyPassword`). **Back up the keystore and password**; without them no update can ship. By hand: `flutter build apk --release --split-per-abi` (per ABI), `flutter build apk --release` (universal), `flutter build appbundle --release`.
 
 ### Recipe G: Test on a phone with real data
